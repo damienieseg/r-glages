@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Réglages"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Réglages</title>
+<style>
+:root{--bg:#f2f2f7;--card:#fff;--tx:#000;--sub:#8a8a8e;--sep:#d1d1d6;--blue:#007aff;--green:#34c759;--off:#e9e9ea;--frame:#1a1a1c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--card:#1c1c1e;--tx:#fff;--sub:#98989f;--sep:#38383a;--blue:#0a84ff;--green:#30d158;--off:#39393d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000;--card:#1c1c1e;--tx:#fff;--sub:#98989f;--sep:#38383a;--blue:#0a84ff;--green:#30d158;--off:#39393d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{display:grid;place-items:center;background:#d8d8dd;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--tx)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:#0b0b0c}}
+:root[data-theme="dark"] body{background:#0b0b0c}
+#phone{--top:47px;--fs:17px;position:relative;width:390px;height:min(844px,100%);border-radius:52px;overflow:hidden;background:var(--bg);box-shadow:0 0 0 10px var(--frame),0 30px 80px rgba(0,0,0,.35)}
+#phone.bold{font-weight:600}
+#sb{position:absolute;top:0;left:0;right:0;height:var(--top);z-index:20;display:flex;justify-content:space-between;align-items:center;padding:6px 34px 0 40px;font-weight:600;font-size:16px;pointer-events:none}
+#sb .r{display:flex;gap:6px;align-items:center}
+.bat{width:25px;height:12px;border:1.5px solid var(--sub);border-radius:4px;position:relative;padding:1px}
+.bat i{display:block;height:100%;width:80%;background:var(--tx);border-radius:2px}
+.bat.lp i{background:#ffcc00}
+#pct{font-size:12px}
+.sig{display:flex;gap:2px;align-items:flex-end;height:11px}.sig i{width:3px;background:var(--tx);border-radius:1px}
+@media (max-width:500px){:root{padding:0}html,body{height:100%}:root body,:root:not([data-theme="light"]) body,:root[data-theme="dark"] body{background:var(--bg)}#phone{--top:env(safe-area-inset-top,0px);width:100%;height:100%;height:100dvh;border-radius:0;box-shadow:none}#sb{display:none}}
+.page{position:absolute;inset:0;background:var(--bg);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.page.in{transform:none}.page.under{transform:translateX(-28%)}
+.hd{position:absolute;top:0;left:0;right:0;height:calc(var(--top) + 44px);padding-top:var(--top);display:flex;align-items:center;justify-content:center;z-index:10;background:transparent;border-bottom:.5px solid transparent;transition:background .2s,border-color .2s}
+.page.sc .hd{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--sep)}
+.hd .t{font-weight:600;font-size:17px;opacity:0;transition:opacity .2s}.page.sc .hd .t{opacity:1}
+.back{position:absolute;left:16px;bottom:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:0;border:0;border-radius:50%;background:color-mix(in srgb,var(--card) 65%,transparent);backdrop-filter:blur(18px) saturate(1.7);-webkit-backdrop-filter:blur(18px) saturate(1.7);box-shadow:0 2px 12px rgba(0,0,0,.14),inset 0 0 0 .5px rgba(255,255,255,.55);cursor:pointer;padding:0}
+.back::before{content:"";width:11px;height:11px;border-left:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(45deg) scale(.8) translate(2px,-2px);margin:0}
+.bd{position:absolute;inset:0;overflow-y:auto;padding:calc(var(--top) + 44px) 16px calc(40px + env(safe-area-inset-bottom,0px));scrollbar-width:none}
+.bd::-webkit-scrollbar{display:none}
+h1{font-size:34px;font-weight:700;letter-spacing:.2px;margin:4px 4px 12px}
+.search{display:flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--card) 70%,transparent);backdrop-filter:blur(18px) saturate(1.7);-webkit-backdrop-filter:blur(18px) saturate(1.7);box-shadow:0 2px 14px rgba(0,0,0,.1),inset 0 0 0 .5px rgba(255,255,255,.5);border-radius:24px;padding:0 18px;height:48px;margin-bottom:22px}
+.search input{flex:1;border:0;background:none;font:inherit;font-size:17px;color:var(--tx);outline:none;min-width:0}
+.search input::placeholder{color:var(--sub)}
+.sh,.sf{font-size:13px;color:var(--sub);padding:0 16px;margin:0}
+.sh{text-transform:none;margin:22px 0 7px}.sf{margin:7px 0 0;line-height:1.35}
+.grp{background:var(--card);border-radius:26px;overflow:hidden;margin-top:0}
+.sec+.sec{margin-top:0}
+.sec{margin-bottom:24px}.sec:has(.sh){margin-bottom:12px}
+.row{position:relative;display:flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;font-size:var(--fs);cursor:default;user-select:none}
+.row.go,.row.pick,.row.prof{cursor:pointer}.row.go:active,.row.pick:active,.row.prof:active{background:color-mix(in srgb,var(--sub) 20%,transparent)}
+.row:not(:last-child)::after{content:"";position:absolute;left:16px;right:0;bottom:0;border-bottom:.5px solid var(--sep)}
+.grp.hasic .row:not(:last-child)::after{left:58px}
+.ic{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;flex:none;font-size:17px;margin-left:-4px}
+.ic b{font-weight:400;filter:brightness(0) invert(1);font-size:16px;line-height:1}
+.lb{flex:1;min-width:0;padding:11px 0}
+.val{color:var(--sub);font-size:calc(var(--fs) - 0px)}
+i.chev{width:8px;height:8px;border-top:2px solid #c4c4c7;border-right:2px solid #c4c4c7;transform:rotate(45deg);margin-left:-2px;flex:none}
+.sw{width:62px;height:34px;border-radius:17px;background:var(--off);position:relative;flex:none;cursor:pointer;transition:background .25s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:40px;height:28px;border-radius:14px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.28),inset 0 0 0 .5px rgba(255,255,255,.8);transition:transform .25s}
+.sw.on{background:var(--green)}.sw.on::after{transform:translateX(16px)}
+.ck{color:var(--blue);font-weight:600;font-size:18px}
+.prof{padding:12px 16px;gap:14px}
+.av{width:60px;height:60px;border-radius:50%;background:linear-gradient(160deg,#9aa0ad,#5b6070);color:#fff;display:grid;place-items:center;font-size:23px;font-weight:500;flex:none}
+.prof .lb{padding:0}.prof small{display:block;color:var(--sub);font-size:14px;margin-top:2px;line-height:1.25}
+.prof strong{font-size:20px;font-weight:500}
+.sl{padding:12px 16px;gap:14px}
+.sl span{color:var(--sub);flex:none}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:4px;border-radius:2px;background:linear-gradient(to right,var(--blue) var(--p,50%),var(--off) var(--p,50%));outline:none;margin:0;min-width:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+input[type=range]::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+.themes{display:flex;justify-content:space-around;padding:18px 8px 14px}
+.th{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:14px;cursor:pointer;background:none;border:0;color:var(--tx);font-family:inherit}
+.th .m{width:62px;height:92px;border-radius:10px;border:1px solid var(--sep);overflow:hidden;display:flex;flex-direction:column;gap:5px;padding:9px 7px}
+.th .m i{display:block;height:7px;border-radius:3px;background:rgba(128,128,128,.35)}.th .m i:first-child{width:60%}
+.th .o{width:22px;height:22px;border-radius:50%;border:1.5px solid #c4c4c7;display:grid;place-items:center;color:#fff;font-size:13px}
+.th.sel .o{background:var(--blue);border-color:var(--blue)}.th.sel .o::after{content:"✓"}
+.ic svg{display:block}
+.ah{text-align:center;padding:4px 0 22px}.ah .av{width:96px;height:96px;font-size:36px;margin:0 auto 12px}.ah h2{font-size:24px;margin:0 0 4px;font-weight:600}.ah p{margin:0;color:var(--sub);font-size:15px}
+.fld{flex:1;min-width:0;border:0;background:none;font:inherit;color:var(--sub);text-align:right;outline:none;padding:11px 0}
+.fld:focus{color:var(--tx)}
+.dtin{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;border:0;background:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+.fld[type=date]{-webkit-appearance:none;appearance:none;display:block;height:44px;padding:0;margin:0;background:none;text-align:right;line-height:44px}
+.fld[type=date]::-webkit-date-and-time-value{text-align:right;margin:0;min-height:1.2em}
+.fld[type=date]::-webkit-datetime-edit{padding:0;text-align:right}
+.fld[type=date]{position:relative}
+.fld[type=date]::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;padding:0}
+.empty{text-align:center;color:var(--sub);padding:60px 20px;line-height:1.4}
+.empty b{display:block;font-size:20px;color:var(--tx);margin-bottom:6px}
+.hbar{position:absolute;bottom:8px;left:50%;width:134px;height:5px;margin-left:-67px;border-radius:3px;background:var(--tx);opacity:.9;z-index:20;pointer-events:none}
+@media (max-width:500px){.hbar{display:none}}
+</style></head>
+<body>
+<div id="phone">
+  <div id="sb"><span id="clk">9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:11px"></i></span><span id="wf">􀙇</span><span id="pct"></span><span class="bat" id="bat"><i></i></span></span></div>
+  <div id="stack"></div><div class="hbar"></div>
+</div>
+<script>
+const S={name:"Camille Martin",birth:"1995-03-14",email:"camille.martin@icloud.com",phone:"+33 6 12 34 56 78",avion:0,wifi:1,bt:1,cell:1,roam:0,hotspot:0,net:"",bt1:1,mute:0,vib:1,vol:65,theme:"auto",bright:100,auto:1,tt:1,text:3,bold:0,pct:1,lp:0,
+n_Messages:1,n_Mail:1,n_Calendrier:1,n_Photos:0,n_Téléphone:1,n_Rappels:1};
+Object.assign(S,{dev:"iPhone",dnd:0,foc1:1,st:1,ccapp:1,c_Lampe:1,c_Minuteur:1,c_Calculatrice:1,c_Appareil:1,dl:"home",hbadge:1,mono:0,wp:"bl",wdim:1,siri1:1,siri2:1,f1:1,f2:1,f3:1,ana:0,au:1,ad:"ct",autotime:1,h24:1,k1:1,k2:1,k3:1,k4:1,tfa:1,mu:1,lm:1,ln:1,ll:1});
+try{const sv=JSON.parse(localStorage.getItem("reglages")||"{}");if(typeof sv.name==="string")S.name=sv.name;if(typeof sv.birth==="string")S.birth=sv.birth;if(typeof sv.email==="string")S.email=sv.email;if(typeof sv.phone==="string")S.phone=sv.phone;if(typeof sv.dev==="string")S.dev=sv.dev}catch(e){}
+const save=()=>{try{localStorage.setItem("reglages",JSON.stringify({name:S.name,birth:S.birth,email:S.email,phone:S.phone,dev:S.dev}))}catch(e){}};
+const ini=()=>S.name.trim().split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase()||"?";
+const IC={
+avion:[`<path fill="#fff" stroke="none" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="translate(12 12) rotate(45) scale(.85) translate(-12 -12)"/>`,"#ff9500"],
+wifi:[`<path d="M2.5 9.2a14 14 0 0 1 19 0M5.8 12.6a9.4 9.4 0 0 1 12.4 0M9.1 16a4.8 4.8 0 0 1 5.8 0"/><circle cx="12" cy="19.4" r="1.5" fill="#fff" stroke="none"/>`,"#007aff"],
+bt:[`<path stroke-width="2.2" d="M7 7.5l10 9-5 4.5V3l5 4.5-10 9"/>`,"#007aff"],
+cell:[`<rect x="3" y="14" width="3.4" height="6" rx="1" fill="#fff" stroke="none"/><rect x="8" y="10.5" width="3.4" height="9.5" rx="1" fill="#fff" stroke="none"/><rect x="13" y="7" width="3.4" height="13" rx="1" fill="#fff" stroke="none"/><rect x="18" y="3.5" width="3.4" height="16.5" rx="1" fill="#fff" stroke="none"/>`,"#34c759"],
+hot:[`<path stroke-width="2.2" d="M10 14a3.5 3.5 0 0 1 0-5l2-2a3.5 3.5 0 0 1 5 5l-1 1M14 10a3.5 3.5 0 0 1 0 5l-2 2a3.5 3.5 0 0 1-5-5l1-1"/>`,"#34c759"],
+notif:[`<path fill="#fff" stroke="none" d="M12 2.8a6 6 0 0 0-6 6v3.6l-1.8 3.2c-.4.7.1 1.6.9 1.6h13.8c.8 0 1.3-.9.9-1.6L18 12.4V8.8a6 6 0 0 0-6-6z"/><path fill="#fff" stroke="none" d="M9.7 19a2.4 2.4 0 0 0 4.6 0z"/>`,"#ff3b30"],
+son:[`<path fill="#fff" stroke="none" d="M3.5 9.5v5h3.8l4.7 3.8V5.7L7.3 9.5z"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18.2 6.6a7.6 7.6 0 0 1 0 10.8"/>`,"#ff2d55"],
+foc:[`<path fill="#fff" stroke="none" d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>`,"#5856d6"],
+time:[`<path fill="#fff" stroke="none" d="M6.5 3h11v3.2l-4.2 5.8 4.2 5.8V21h-11v-3.2l4.2-5.8-4.2-5.8z"/>`,"#5856d6"],
+gen:[`<circle cx="12" cy="12" r="8.6" stroke-width="3.4" stroke-dasharray="3.4 3.4"/><circle cx="12" cy="12" r="6.6" fill="#fff" stroke="none"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/>`,"#8e8e93"],
+cc:[`<rect x="3" y="4" width="18" height="7" rx="3.5" fill="#fff" stroke="none"/><circle cx="16.5" cy="7.5" r="2.4" fill="currentColor" stroke="none"/><rect x="3" y="13" width="18" height="7" rx="3.5" fill="#fff" stroke="none"/><circle cx="7.5" cy="16.5" r="2.4" fill="currentColor" stroke="none"/>`,"#8e8e93"],
+home:[`<rect x="3.5" y="3.5" width="7" height="7" rx="2" fill="#fff" stroke="none"/><rect x="13.5" y="3.5" width="7" height="7" rx="2" fill="#fff" stroke="none"/><rect x="3.5" y="13.5" width="7" height="7" rx="2" fill="#fff" stroke="none"/><rect x="13.5" y="13.5" width="7" height="7" rx="2" fill="#fff" stroke="none"/>`,"#007aff"],
+disp:[`<circle cx="12" cy="12" r="4.3" fill="#fff" stroke="none"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>`,"#007aff"],
+acc:[`<circle cx="12" cy="5" r="2" fill="#fff" stroke="none"/><path d="M4.5 9.2c5 1.3 10 1.3 15 0M12 9.5v5M12 14.5l-3 6M12 14.5l3 6"/>`,"#007aff"],
+wall:[`<ellipse cx="12" cy="12" rx="2.8" ry="9" fill="#fff" stroke="none" opacity=".9"/><ellipse cx="12" cy="12" rx="2.8" ry="9" fill="#fff" stroke="none" opacity=".9" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="2.8" ry="9" fill="#fff" stroke="none" opacity=".9" transform="rotate(120 12 12)"/>`,"#35aadc"],
+siri:[`<circle cx="12" cy="12" r="8.5" fill="#7b6cff" stroke="none"/><circle cx="10" cy="10" r="5" fill="#4ad8ff" opacity=".9" stroke="none"/><circle cx="14" cy="14.5" r="5" fill="#ff5fa8" opacity=".85" stroke="none"/>`,"#1c1c1e"],
+face:[`<path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 10v1.6M15 10v1.6M12 10v3.6h-1M9 16.2c1.7 1.3 4.3 1.3 6 0"/>`,"#34c759"],
+bat:[`<rect x="2.5" y="7.5" width="17" height="9" rx="2.6" stroke-width="1.8"/><rect x="4.7" y="9.7" width="9" height="4.6" rx="1.2" fill="#fff" stroke="none"/><rect x="21" y="10.8" width="1.6" height="2.8" rx=".8" fill="#fff" stroke="none"/>`,"#34c759"],
+priv:[`<path stroke-width="1.8" d="M8 11.5V5.6a1.5 1.5 0 0 1 3 0V10m0-4.8a1.5 1.5 0 0 1 3 0V10m0-3.2a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.4-6-4.2l-1.6-3a1.5 1.5 0 0 1 2.6-1.5L8 14"/>`,"#007aff"],
+icl:[`<path fill="#fff" stroke="none" d="M7 18.5a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 10.2a4.2 4.2 0 0 1-.5 8.3z"/>`,"#3a9bff"],
+loc:[`<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.8" fill="#fff" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>`,"#34c759"],
+fam:[`<circle cx="9" cy="8" r="3" fill="#fff" stroke="none"/><circle cx="17" cy="9.5" r="2.4" fill="#fff" stroke="none"/><path fill="#fff" stroke="none" d="M3 19c0-3.6 2.7-5.8 6-5.8s6 2.2 6 5.8z"/><path fill="#fff" stroke="none" d="M16.2 13.8c2.9 0 4.8 1.7 4.8 4.4h-4z"/>`,"#5ac8fa"],
+med:[`<path stroke-width="2.4" d="M12 4l6.5 15M12 4L5.5 19M7.8 14.5h8.4"/>`,"#007aff"]
+};
+const TITLES={root:"Réglages",compte:"Compte Apple",wifi:"Wi‑Fi",bt:"Bluetooth",cell:"Données cellulaires",notif:"Notifications",son:"Sons et vibrations",gen:"Général",about:"Informations",disp:"Affichage et luminosité",bat:"Batterie",ident:"Infos personnelles",icl:"iCloud",x1:"Partage de connexion",x2:"Concentration",x3:"Temps d’écran",x4:"Centre de contrôle",x5:"Écran d’accueil",x6:"Accessibilité",x7:"Fond d’écran",x8:"Siri et recherche",x9:"Face ID et code",x10:"Confidentialité",x11:"Mise à jour logicielle",x12:"Stockage de l’iPhone",x13:"AirDrop",x14:"Date et heure",x15:"Clavier",x16:"Langue et région",x30:"Mot de passe et sécurité",x31:"Moyens de paiement",x32:"Abonnements",x33:"Médias et achats",x34:"Localiser",x35:"Partage familial",x36:"MacBook Pro",x37:"iPad"};
+const T=(l,k,i)=>({k:"t",l,key:k,i}),N=(l,to,i,v)=>({k:"n",l,to,i,v}),V=(l,v,i)=>({k:"v",l,v,i});
+const C=(l,key,val,x)=>({k:"c",l,key,val,x}),SL=(key,a,b,min,max,step)=>({k:"sl",key,a,b,min,max,step});
+const onoff=x=>x?"Oui":"Non";
+const fmtD=d=>{if(!d)return"—";const[y,m,j]=d.split("-").map(Number);return new Date(y,m-1,j).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"})};
+const IN=(l,key)=>({k:"in",l,key}),DT=(l,key)=>({k:"dt",l,key});
+const EX={
+x1:()=>[{rows:[T("Autoriser les autres à se connecter","hotspot")],f:"Autorisez d’autres appareils à utiliser la connexion de cet iPhone."},{h:"Wi-Fi",rows:[V("Mot de passe Wi-Fi","••••••••")]}],
+x2:()=>[{rows:[T("Ne pas déranger","dnd"),V("Sommeil","Désactivé"),V("Personnel","Désactivé"),V("Travail","Désactivé")]},{rows:[T("Partager l’état Concentration","foc1")],f:"Les personnes qui vous écrivent voient que les notifications sont coupées."}],
+x3:()=>[{h:"Aujourd’hui",rows:[V("Temps d’utilisation","3 h 42"),V("Moyenne quotidienne","4 h 05")]},{rows:[T("Temps d’écran","st")]},{h:"Limites",rows:[V("Temps d’arrêt","Désactivé"),V("Limites d’app","Aucune")]}],
+x4:()=>[{rows:[T("Accès dans les apps","ccapp")],f:"Autorise l’accès au Centre de contrôle depuis n’importe quelle app."},{h:"Commandes incluses",rows:[T("Lampe torche","c_Lampe"),T("Minuteur","c_Minuteur"),T("Calculatrice","c_Calculatrice"),T("Appareil photo","c_Appareil")]}],
+x5:()=>[{h:"Nouvelles apps téléchargées",rows:[C("Ajouter à l’écran d’accueil","dl","home"),C("Bibliothèque d’apps seulement","dl","lib")]},{h:"Pastilles de notification",rows:[T("Afficher dans la bibliothèque","hbadge")]}],
+x6:()=>[{h:"Vision",rows:[V("VoiceOver","Non"),V("Zoom","Non"),T("Texte en gras","bold")]},{h:"Physique et moteur",rows:[V("Toucher",""),V("AssistiveTouch","Non")]},{h:"Audition",rows:[T("Audio mono","mono")]}],
+x7:()=>[{h:"Fond d’écran",rows:[C("Dégradé bleu","wp","bl"),C("Dégradé rose","wp","rs"),C("Noir","wp","nr")]},{rows:[T("Assombrir en mode sombre","wdim")]}],
+x8:()=>[{rows:[T("Écouter « Siri »","siri1"),T("Bouton latéral pour Siri","siri2")]},{rows:[V("Langue","Français (France)"),V("Voix de Siri","Voix 1")]}],
+x9:()=>[{h:"Utiliser Face ID pour",rows:[T("Déverrouiller l’iPhone","f1"),T("Apple Pay","f2"),T("Mots de passe automatiques","f3")]},{rows:[V("Apparence alternative","Non configurée"),V("Code","Activé")]}],
+x10:()=>[{rows:[V("Service de localisation","Oui"),V("Suivi","Non"),V("Contacts","12 apps"),V("Photos","8 apps"),V("Micro","5 apps")]},{rows:[T("Analyse et améliorations","ana")]}],
+x11:()=>[{rows:[V("iOS 27.0","À jour")],f:"Votre logiciel est à jour."},{rows:[T("Mises à jour automatiques","au")]}],
+x12:()=>[{rows:[V("Utilisé","148 Go sur 256 Go")]},{h:"Détail",rows:[V("Photos","42 Go"),V("Apps","61 Go"),V("Messages","9 Go"),V("Système","36 Go")]}],
+x13:()=>[{h:"Recevoir",rows:[C("Réception désactivée","ad","off"),C("Contacts seulement","ad","ct"),C("Tout le monde pendant 10 minutes","ad","all")]}],
+x14:()=>[{rows:[T("Réglage automatique","autotime"),T("Format 24 heures","h24")]},{rows:[V("Fuseau horaire","Paris")]}],
+x15:()=>[{rows:[T("Correction automatique","k1"),T("Majuscules automatiques","k2"),T("Vérification orthographique","k3"),T("Raccourci avec point","k4")]},{rows:[V("Claviers","Français, Emoji")]}],
+x16:()=>[{rows:[V("Langue de l’iPhone","Français"),V("Région","France"),V("Calendrier","Grégorien"),V("Température","°C")]}],
+x30:()=>[{rows:[V("Mot de passe","Modifié il y a 4 mois"),T("Authentification à deux facteurs","tfa")]},{rows:[V("Contacts de récupération","Aucun")]}],
+x31:()=>[{rows:[V("Visa","•••• 4821"),V("Apple Cash","12,40 €")]},{rows:[V("Adresse de facturation","Paris, France")]}],
+x32:()=>[{h:"Actifs",rows:[V("iCloud+ 50 Go","0,99 €/mois"),V("Apple Music","10,99 €/mois")]}],
+x33:()=>[{rows:[V("Compte",S.email),V("Pays ou région","France")]},{rows:[T("Mises à jour des apps","mu")]}],
+x34:()=>[{rows:[T("Localiser mon iPhone","lm"),T("Réseau Localiser","ln"),T("Envoyer la dernière position","ll")]}],
+x35:()=>[{rows:[V("Organisateur",S.name||"—"),V("Membres","Aucun")],f:"Partagez abonnements et achats avec jusqu’à cinq personnes."}],
+x36:()=>[{rows:[V("Modèle","MacBook Pro 14 pouces"),V("Version","macOS 27")]}],
+x37:()=>[{rows:[V("Modèle","iPad Air"),V("Version","iPadOS 27")]}]
+};
+function secs(id){
+  switch(id){
+  case"root":return[
+    {rows:[{k:"p"}]},
+    {rows:[T("Mode Avion","avion","avion"),N("Wi‑Fi","wifi","wifi",S.wifi?(S.net||"Non connecté"):"Non"),N("Bluetooth","bt","bt",onoff(S.bt)),N("Données cellulaires","cell","cell",""),N("Partage de connexion","x1","hot","Non")]},
+    {rows:[N("Notifications","notif","notif"),N("Sons et vibrations","son","son"),N("Concentration","x2","foc"),N("Temps d’écran","x3","time")]},
+    {rows:[N("Général","gen","gen"),N("Centre de contrôle","x4","cc"),N("Écran d’accueil","x5","home"),N("Affichage et luminosité","disp","disp"),N("Accessibilité","x6","acc"),N("Fond d’écran","x7","wall"),N("Siri et recherche","x8","siri"),N("Face ID et code","x9","face"),N("Batterie","bat","bat"),N("Confidentialité","x10","priv")]}];
+  case"compte":return[{raw:1,rows:[{k:"ah"}]},{rows:[N("Infos personnelles","ident"),N("Mot de passe et sécurité","x30"),N("Moyens de paiement","x31",0,"Visa"),N("Abonnements","x32")]},{rows:[N("iCloud","icl","icl","50 Go"),N("Médias et achats","x33","med"),N("Localiser","x34","loc"),N("Partage familial","x35","fam","Configurer")]},{h:"Appareils",rows:[N("MacBook Pro","x36"),N("iPad","x37")]}];
+  case"ident":return[{rows:[IN("Nom","name"),DT("Date de naissance","birth")]},{h:"Joignable à",rows:[IN("E-mail","email"),IN("Téléphone","phone")],f:"Vos modifications sont enregistrées sur cet appareil."}];
+  case"icl":return[{h:"Stockage",rows:[V("Utilisé","32 Go sur 50 Go"),V("Forfait","iCloud+ 50 Go")]},{h:"Applications utilisant iCloud",rows:[T("Photos","n_Photos"),T("Mail","n_Mail"),T("Calendrier","n_Calendrier")]}];
+  case"wifi":return[{rows:[T("Wi‑Fi","wifi")]},...(S.wifi?[{h:"Réseaux",rows:["Livebox-4F2A","Freebox-Maison","SFR_WiFi_7C1D","Bbox-9A3E"].map(n=>C(n,"net",n,"🔒"))}]:[]),{f:"La connexion aux réseaux connus se fait automatiquement."}];
+  case"bt":return[{rows:[T("Bluetooth","bt")],f:"Cet iPhone est visible sous le nom « iPhone de Camille » quand les réglages Bluetooth sont ouverts."},...(S.bt?[{h:"Mes appareils",rows:[T("AirPods Pro de Camille","bt1"),V("Enceinte Salon","Non connecté"),V("Apple Watch","Non connecté")]}]:[])];
+  case"cell":return[{rows:[T("Données cellulaires","cell"),T("Itinérance des données","roam")],f:"Désactiver l’itinérance évite les frais à l’étranger."},{h:"Forfait",rows:[V("Réseau","Orange"),V("Mode données","5G Auto"),V("Période actuelle","3,2 Go")]}];
+  case"notif":return[{h:"Style de notification",rows:["Messages","Mail","Calendrier","Photos","Téléphone","Rappels"].map(a=>T(a,"n_"+a))}];
+  case"son":return[{h:"Sonnerie et alertes",rows:[SL("vol","🔈","🔊",0,100,1)]},{rows:[T("Silencieux","mute"),T("Vibreur en mode sonnerie","vib"),V("Sonnerie","Réflexion")]}];
+  case"gen":return[{rows:[N("Informations","about"),N("Mise à jour logicielle","x11",0,"À jour"),N("Stockage de l’iPhone","x12")]},{rows:[N("AirDrop","x13"),N("Date et heure","x14"),N("Clavier","x15"),N("Langue et région","x16")]}];
+  case"about":return[{rows:[IN("Nom","dev"),V("Version d’iOS","27.0"),V("Modèle","iPhone 17 Pro"),V("Capacité","256 Go"),V("Numéro de série","F2LXK7Q3P9")]}];
+  case"disp":return[{h:"Apparence",rows:[{k:"th"}]},{h:"Luminosité",rows:[SL("bright","☀","☀",0,100,1),T("Luminosité automatique","auto"),T("True Tone","tt")]},{h:"Texte",rows:[SL("text","A","A",1,5,1),T("Texte en gras","bold")],f:"Faites glisser le curseur pour agrandir ou réduire le texte."}];
+  case"bat":return[{rows:[T("Pourcentage de la batterie","pct"),T("Mode économie d’énergie","lp")],f:"Réduit l’activité en arrière-plan jusqu’à la prochaine recharge complète."},{h:"État de la batterie",rows:[V("Capacité maximale","94 %"),V("Cycles de charge","212")]}];
+  default:return EX[id]?EX[id]():null;}
+}
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function icon(i){const d=IC[i];return d?`<span class="ic" style="background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,0)),${d[1]};color:${d[1]}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d[0]}</svg></span>`:""}
+function row(r){
+  const ic=icon(r.i);
+  switch(r.k){
+  case"p":return`<div class="row prof go" data-go="compte"><div class="av">${ini()}</div><div class="lb"><strong>${esc(S.name||"Votre nom")}</strong><small>Compte Apple, iCloud+, Médias et achats</small></div><i class="chev"></i></div>`;
+  case"t":return`<div class="row">${ic}<div class="lb">${esc(r.l)}</div><span class="sw ${S[r.key]?"on":""}" data-t="${r.key}" role="switch" aria-checked="${!!S[r.key]}" aria-label="${esc(r.l)}"></span></div>`;
+  case"n":return`<div class="row go" data-go="${r.to}">${ic}<div class="lb">${esc(r.l)}</div><span class="val">${esc(r.v||"")}</span><i class="chev"></i></div>`;
+  case"v":return`<div class="row">${ic}<div class="lb">${esc(r.l)}</div><span class="val">${esc(r.v)}</span></div>`;
+  case"c":return`<div class="row pick" data-set="${r.key}|${esc(r.val)}"><div class="lb">${esc(r.l)}</div>${S[r.key]===r.val?'<span class="ck">✓</span>':""}<span class="val">${r.x||""}</span></div>`;
+  case"sl":return`<div class="row sl"><span>${r.a}</span><input type="range" min="${r.min}" max="${r.max}" step="${r.step}" value="${S[r.key]}" data-sl="${r.key}" style="--p:${(S[r.key]-r.min)/(r.max-r.min)*100}%" aria-label="Curseur"><span style="font-size:1.25em">${r.b}</span></div>`;
+  case"ah":return`<div class="ah"><div class="av">${ini()}</div><h2>${esc(S.name||"Votre nom")}</h2><p>${esc(S.email)}</p></div>`;
+  case"in":return`<div class="row"><div class="lb" style="flex:none">${r.l}</div><input class="fld" type="${r.key==="email"?"email":r.key==="phone"?"tel":"text"}" data-in="${r.key}" value="${esc(S[r.key]).replace(/"/g,"&quot;")}" placeholder="${r.key==="email"?"nom@exemple.fr":r.key==="phone"?"+33 6 00 00 00 00":"Votre nom"}" autocomplete="${r.key==="email"?"email":"name"}" aria-label="${r.l}"></div>`;
+  case"dt":return`<div class="row"><div class="lb" style="flex:none">${r.l}</div><span class="val" style="margin-left:auto">${fmtD(S[r.key])}</span><input class="dtin" type="date" data-in="${r.key}" value="${S[r.key]}" aria-label="${r.l}"></div>`;
+  case"th":return`<div class="themes">${[["light","Clair","#fff"],["dark","Sombre","#1c1c1e"],["auto","Auto","linear-gradient(100deg,#fff 50%,#1c1c1e 50%)"]].map(([v,l,b])=>`<button class="th ${S.theme===v?"sel":""}" data-th="${v}"><div class="m" style="background:${b}"><i></i><i></i><i style="width:80%"></i></div>${l}<span class="o"></span></button>`).join("")}</div>`;}
+  return"";
+}
+function body(id,q){
+  const s=secs(id),title=TITLES[id]||"";
+  if(!s)return`<h1>${esc(title||"Réglages")}</h1><div class="empty"><b>Section non incluse</b>Cette page n’existe pas dans la démo. Essayez Wi‑Fi, Bluetooth, Notifications, Sons, Affichage ou Batterie.</div>`;
+  let out=`<h1>${esc(title)}</h1>`;
+  if(id==="root"){
+    out+=`<div class="search"><span style="color:var(--sub)">⌕</span><input id="q" type="search" placeholder="Rechercher" value="${esc(q||"")}" autocomplete="off"></div><div id="rl">`+rootList(q)+`</div>`;
+    return out;
+  }
+  return out+s.map(secHTML).join("");
+}
+function secHTML(sc){
+  if(sc.raw)return sc.rows.map(row).join("");
+  const rows=sc.rows||[],ic=rows.some(r=>r.i);
+  return`<div class="sec">${sc.h?`<p class="sh">${esc(sc.h)}</p>`:""}${rows.length?`<div class="grp ${ic?"hasic":""}">${rows.map(row).join("")}</div>`:""}${sc.f?`<p class="sf">${esc(sc.f)}</p>`:""}</div>`;
+}
+function rootList(q){
+  let s=secs("root");q=(q||"").trim().toLowerCase();
+  if(q){const rows=s.flatMap(x=>x.rows).filter(r=>r.l&&r.l.toLowerCase().includes(q));
+    return rows.length?secHTML({rows}):`<div class="empty"><b>Aucun résultat</b>Aucun réglage ne correspond à « ${esc(q)} ».</div>`;}
+  return s.map(secHTML).join("");
+}
+const stack=[],host=document.getElementById("stack"),ph=document.getElementById("phone");
+let query="";
+function push(id){
+  const el=document.createElement("div");el.className="page";
+  const prev=stack.length?TITLES[stack[stack.length-1].id]:"";
+  el.innerHTML=`<div class="hd">${prev?`<button class="back">${esc(prev)}</button>`:""}<span class="t">${esc(TITLES[id]||"Réglages")}</span></div><div class="bd">${body(id,query)}</div>`;
+  const bd=el.querySelector(".bd");bd.addEventListener("scroll",()=>el.classList.toggle("sc",bd.scrollTop>34));
+  host.appendChild(el);
+  if(stack.length)stack[stack.length-1].el.classList.add("under");
+  stack.push({id,el});el.offsetWidth;el.classList.add("in");
+}
+function pop(){
+  if(stack.length<2)return;const {el}=stack.pop();el.classList.remove("in");
+  stack[stack.length-1].el.classList.remove("under");setTimeout(()=>el.remove(),380);
+}
+function refresh(){
+  stack.forEach(({id,el})=>{
+    if(id==="root"){document.getElementById("rl").innerHTML=rootList(query);return}
+    const bd=el.querySelector(".bd"),y=bd.scrollTop;bd.innerHTML=body(id);bd.scrollTop=y;
+  });
+}
+function apply(){
+  const r=document.documentElement;
+  S.theme==="auto"?r.removeAttribute("data-theme"):r.setAttribute("data-theme",S.theme);
+  ph.style.filter=`brightness(${(0.6+S.bright/100*0.4).toFixed(2)})`;
+  ph.style.setProperty("--fs",[14,15.5,17,19,22][S.text-1]+"px");
+  ph.classList.toggle("bold",!!S.bold);
+  const b=document.getElementById("bat");b.classList.toggle("lp",!!S.lp);
+  document.getElementById("pct").textContent=S.pct?"87":"";
+  document.getElementById("wf").textContent=S.wifi&&S.net?"Wi‑Fi":"";
+}
+host.addEventListener("click",e=>{
+  const t=e.target.closest("[data-t]");
+  if(t){const k=t.dataset.t;S[k]=S[k]?0:1;
+    if(k==="avion"&&S.avion){S.wifi=S.bt=S.cell=0}
+    if((k==="wifi"||k==="bt"||k==="cell")&&S[k])S.avion=0;
+    t.classList.toggle("on",!!S[k]);apply();setTimeout(refresh,230);return}
+  const g=e.target.closest("[data-go]");if(g){push(g.dataset.go);return}
+  const s=e.target.closest("[data-set]");if(s){const[k,v]=s.dataset.set.split("|");S[k]=v;refresh();return}
+  const h=e.target.closest("[data-th]");if(h){S.theme=h.dataset.th;apply();refresh();return}
+  if(e.target.closest(".back"))pop();
+});
+host.addEventListener("input",e=>{
+  const r=e.target;
+  if(r.dataset.sl){const k=r.dataset.sl;S[k]=+r.value;r.style.setProperty("--p",(r.value-r.min)/(r.max-r.min)*100+"%");apply()}
+  if(r.dataset.in){S[r.dataset.in]=r.value;if(r.type==="date"){const v=r.parentNode.querySelector(".val");if(v)v.textContent=fmtD(r.value)}save();const rl=document.getElementById("rl");if(rl)rl.innerHTML=rootList(query)}
+  if(r.id==="q"){query=r.value;document.getElementById("rl").innerHTML=rootList(query)}
+});
+function clock(){document.getElementById("clk").textContent=new Date().toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}
+clock();setInterval(clock,30000);apply();push("root");
+</script>
+</body></html>
